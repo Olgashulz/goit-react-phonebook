@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  display: none;
+}
+
+.name {
+  text-transform: capitalize;
+  font-weight: 700;
+  margin-right: 5px;
+  font-family: 'Grechen Fuemen', cursive;
+  font-family: 'Spartan', sans-serif;
+}
+
+.btn {
+  background-image: url(../../pictures/icons/hello.png);
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: white;
+}
+
+.btn:hover {
+  background-image: url(../../pictures/icons/logOutHover.png);
+}
+
+@media screen and (min-width: 425px) {
+  .name {
+    margin-right: 35px;
+  }
+  .avatar {
+    margin-right: 5px;
+    display: block;
+  }
+}
