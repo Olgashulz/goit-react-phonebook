@@ -1,17 +1,20 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Loader from './components/Loader';
 import AppBar from './components/AppBar/AppBar';
 import Container from './components/Container';
+import Modal from './components/Modal';
 
 import * as authOperations from './redux/auth/auth-operations';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
+
+import ReductForm from './components/RedactForm/RedactForm'
 
 
 
@@ -33,10 +36,22 @@ const ContactsView = lazy(() =>
 
 export default function App() {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.items);
+  const showModal = useSelector(state => state.modal.modal);
+
+  console.log(showModal)
+
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
+
+  const GetUserById = (id) => {
+    const contacts = useSelector(state => state.contacts.items);
+
+    return contacts.items.find(contact =>
+      contact.id === id)
+  };
 
 
   return (
@@ -64,6 +79,14 @@ export default function App() {
           </Suspense>
         </Switch>
       </Container>
+
+      {showModal && (
+        <Modal >
+          {/* <img src={largeImage} alt={inputValue} className="LargeImg" /> */}
+          <ReductForm id={() => GetUserById('61a0e4005deb2600150f56ce')} />
+        </Modal>
+      )}
+
       <ToastContainer autoClose={2500} />
     </>
 

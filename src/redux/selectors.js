@@ -6,3 +6,9 @@ export const visibleContacts = ({ contacts }) => {
 
 
 
+export function GetUserById({ contacts }) {
+    // const contacts = useSelector(state => state.contacts.items);
+    return contacts.items.find(contact =>
+        contact.id)
+};
+

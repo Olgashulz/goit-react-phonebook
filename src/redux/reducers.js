@@ -22,7 +22,7 @@
 
 import { combineReducers, createReducer } from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact } from "./operations"
-import { filterContact, resetFilter } from "./actions"
+import { filterContact, resetFilter, showModal } from "./actions"
 
 const items = createReducer([], {
     [fetchContacts.fulfilled]: (_, { payload }) => payload,
@@ -55,9 +55,12 @@ const error = createReducer(null, {
 const filter = createReducer('', {
     [filterContact]: (state, action) => action.payload,
     [resetFilter]: (state, action) => state = '',
-
 });
 
+
+const modal = createReducer(false, {
+    [showModal]: (state, action) => !state,
+})
 
 // const sort = createReducer([], {
 //     [fetchContacts.fulfilled]: (_, { payload }) => payload,
@@ -65,7 +68,7 @@ const filter = createReducer('', {
 // });
 
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     items,
     filter,
     isLoading,
@@ -73,7 +76,11 @@ const rootReducer = combineReducers({
     // sort,
 })
 
-export default rootReducer;
+export const modalReduser = combineReducers({
+    modal,
+})
+
+// export default rootReducer;
 
 
 

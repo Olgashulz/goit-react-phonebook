@@ -17,7 +17,13 @@ export const deleteContact = contactId => {
 };
 
 export const updateContact = (contactId, update) => {
-    return axios.patch(`/todos/${contactId}`, update).then(({ data }) => data);
+
+    // return axios.patch(`/contacts/${contactId}`, update).then(({ data }) => data);
+    const dataNew = axios.patch(`/contacts/${contactId}`, update).then(({ data }) => data);
+    console.log(dataNew);
+    return dataNew
 };
+
+
 
 

@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import rootReducer from "./reducers";
+import * as redusers from "./reducers";
 import {
     persistStore,
     persistReducer,
@@ -40,7 +40,8 @@ const store = configureStore({
     // reducer: persistedReducer,
     reducer: {
         auth: persistReducer(authPersistConfig, authReducer),
-        contacts: persistReducer(contactsPersistConfig, rootReducer)
+        contacts: persistReducer(contactsPersistConfig, redusers.rootReducer),
+        modal: redusers.modalReduser,
     },
     middleware: getDefaultMiddleware({
         serializableCheck: {
